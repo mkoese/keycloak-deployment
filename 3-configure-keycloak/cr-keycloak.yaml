@@ -1,0 +1,20 @@
+apiVersion: keycloak.org/v1alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+  labels:
+    app: sso
+spec:
+  keycloakDeploymentSpec:
+    imagePullPolicy: Always
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "250m"
+  externalAccess:
+    enabled: true
+  extensions:
+    - https://github.com/aerogear/keycloak-metrics-spi/releases/download/2.5.3/keycloak-metrics-spi-2.5.3.jar
+  postgresDeploymentSpec:
+    imagePullPolicy: Always
+  instances: 1
